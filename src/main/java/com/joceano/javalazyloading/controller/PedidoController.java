@@ -1,8 +1,8 @@
 package com.joceano.javalazyloading.controller;
 
 import com.joceano.javalazyloading.dto.PedidoDto;
+import com.joceano.javalazyloading.dto.PedidoResumoDto;
 import com.joceano.javalazyloading.service.PedidoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +14,11 @@ import java.util.List;
 @RequestMapping("/pedido")
 public class PedidoController {
 
-    @Autowired
-    private PedidoService pedidoService;
+    private final PedidoService pedidoService;
+
+    public PedidoController(PedidoService pedidoService) {
+        this.pedidoService = pedidoService;
+    }
 
     @GetMapping
     public List<PedidoDto> findAll() {
@@ -25,5 +28,10 @@ public class PedidoController {
     @GetMapping("/{id}")
     public PedidoDto findById(@PathVariable Long id) {
         return pedidoService.findById(id);
+    }
+
+    @GetMapping("/resumo/{id}")
+    public PedidoResumoDto findByIdResumo(@PathVariable Long id) {
+        return pedidoService.findByIdResumo(id);
     }
 }
