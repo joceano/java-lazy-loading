@@ -8,6 +8,7 @@ import java.util.List;
 public interface PedidoService {
 
     List<PedidoDto> findAll();
+    List<PedidoResumoDto> findAllResumo();
     PedidoDto findById(Long id);
     PedidoResumoDto findByIdResumo(Long id);
 }

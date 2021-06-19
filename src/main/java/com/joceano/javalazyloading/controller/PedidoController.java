@@ -25,6 +25,11 @@ public class PedidoController {
         return pedidoService.findAll();
     }
 
+    @GetMapping("/resumo")
+    public List<PedidoResumoDto> findAllResumo() {
+        return pedidoService.findAllResumo();
+    }
+
     @GetMapping("/{id}")
     public PedidoDto findById(@PathVariable Long id) {
         return pedidoService.findById(id);

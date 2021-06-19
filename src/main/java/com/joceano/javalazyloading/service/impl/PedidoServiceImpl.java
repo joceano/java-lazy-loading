@@ -21,7 +21,14 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public List<PedidoDto> findAll() {
-        return null;
+        List<Pedido> pedidos = pedidoRepository.findAll();
+        return ObjectSerialization.toDtoList(pedidos, PedidoDto.class);
+    }
+
+    @Override
+    public List<PedidoResumoDto> findAllResumo() {
+        List<Pedido> pedidos = pedidoRepository.findAll();
+        return ObjectSerialization.toDtoList(pedidos, PedidoResumoDto.class);
     }
 
     @Override
