@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PedidoResumoDto {
-
     private Long id;
     private String numero;
     private LocalDate dataEmissao;

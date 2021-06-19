@@ -30,7 +30,7 @@ public class PedidoController {
         return pedidoService.findById(id);
     }
 
-    @GetMapping("/resumo/{id}")
+    @GetMapping("/{id}/resumo")
     public PedidoResumoDto findByIdResumo(@PathVariable Long id) {
         return pedidoService.findByIdResumo(id);
     }
