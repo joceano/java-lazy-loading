@@ -8,6 +8,7 @@ import com.joceano.javalazyloading.repository.PedidoRepository;
 import com.joceano.javalazyloading.service.PedidoService;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Service
@@ -33,13 +34,15 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public PedidoDto findById(Long id) {
-        Pedido pedido = pedidoRepository.findById(id).orElse(null);
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new NoResultException(String.format("Pedido de código %d não encontrado", id)));
         return ObjectSerialization.toDto(pedido, PedidoDto.class);
     }
 
     @Override
     public PedidoResumoDto findByIdResumo(Long id) {
-        Pedido pedido = pedidoRepository.findById(id).orElse(null);
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new NoResultException(String.format("Pedido de código %d não encontrado", id)));
         return ObjectSerialization.toDto(pedido, PedidoResumoDto.class);
     }
 }
