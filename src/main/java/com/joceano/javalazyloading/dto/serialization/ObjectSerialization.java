@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public final class ObjectSerialization {
 
+    private ObjectSerialization() { }
+
     public static <D> D toDto(Object source, Class<D> destinationType) {
         var modelMapper = new ModelMapper();
         return modelMapper.map(source, destinationType);
