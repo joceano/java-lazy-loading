@@ -8,16 +8,16 @@ import java.util.stream.Collectors;
 
 public final class ObjectSerialization {
 
-    public static <T> T toDto(Object object, Class<T> objectClass) {
+    public static <D> D toDto(Object source, Class<D> destinationType) {
         var modelMapper = new ModelMapper();
-        return modelMapper.map(object, objectClass);
+        return modelMapper.map(source, destinationType);
     }
 
-    public static <T> List<T> toDtoList(List<?> objects, Class<T> objectClass) {
-        return objects.stream().map(object -> toDto(object, objectClass)).collect(Collectors.toList());
+    public static <D> List<D> toDtoList(List<?> sources, Class<D> destinationType) {
+        return sources.stream().map(source -> toDto(source, destinationType)).collect(Collectors.toList());
     }
 
-    public static <T> Set<T> toDtoSet(Set<?> objects, Class<T> objectClass) {
-        return objects.stream().map(object -> toDto(object, objectClass)).collect(Collectors.toSet());
+    public static <D> Set<D> toDtoSet(Set<?> sources, Class<D> destinationType) {
+        return sources.stream().map(source -> toDto(source, destinationType)).collect(Collectors.toSet());
     }
 }
