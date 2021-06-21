@@ -6,6 +6,7 @@ import com.joceano.javalazyloading.model.PedidoItem;
 import com.joceano.javalazyloading.repository.PedidoItemRepository;
 import com.joceano.javalazyloading.service.PedidoItemService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class PedidoItemServiceImpl implements PedidoItemService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<PedidoItemDto> findByPedidoId(Long id) {
         List<PedidoItem> pedidoItems = pedidoItemRepository.findByPedidoId(id);
         return ObjectSerialization.toDtoList(pedidoItems, PedidoItemDto.class);
