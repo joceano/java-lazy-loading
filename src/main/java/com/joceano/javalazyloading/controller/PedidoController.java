@@ -3,6 +3,7 @@ package com.joceano.javalazyloading.controller;
 import com.joceano.javalazyloading.dto.PedidoDto;
 import com.joceano.javalazyloading.dto.PedidoResumoDto;
 import com.joceano.javalazyloading.service.PedidoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class PedidoController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public PedidoDto insert(@RequestBody PedidoDto pedidoDto) {
         return pedidoService.insert(pedidoDto);
     }
