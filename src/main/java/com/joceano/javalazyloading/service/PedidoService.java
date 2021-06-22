@@ -11,4 +11,5 @@ public interface PedidoService {
     List<PedidoResumoDto> findAllResumo();
     PedidoDto findById(Long id);
     PedidoResumoDto findByIdResumo(Long id);
+    PedidoDto insert(PedidoDto pedidoDto);
 }

@@ -1,5 +1,6 @@
 package com.joceano.javalazyloading.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,6 @@ public class PedidoDto {
     private Long id;
     private String numero;
     private LocalDate dataEmissao;
+    @JsonManagedReference
     private List<PedidoItemDto> itens = new ArrayList<>();
 }

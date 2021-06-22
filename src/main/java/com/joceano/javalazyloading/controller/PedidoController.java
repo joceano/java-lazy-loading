@@ -3,10 +3,7 @@ package com.joceano.javalazyloading.controller;
 import com.joceano.javalazyloading.dto.PedidoDto;
 import com.joceano.javalazyloading.dto.PedidoResumoDto;
 import com.joceano.javalazyloading.service.PedidoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,5 +35,10 @@ public class PedidoController {
     @GetMapping("/{id}/resumo")
     public PedidoResumoDto findByIdResumo(@PathVariable Long id) {
         return pedidoService.findByIdResumo(id);
+    }
+
+    @PostMapping
+    public PedidoDto insert(@RequestBody PedidoDto pedidoDto) {
+        return pedidoService.insert(pedidoDto);
     }
 }

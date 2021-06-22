@@ -1,5 +1,6 @@
 package com.joceano.javalazyloading.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,6 @@ public class PedidoItemDto {
     private BigDecimal quantidade;
     private BigDecimal valorUnitario;
     private BigDecimal valorTotal;
+    @JsonBackReference
+    private PedidoDto pedido;
 }
