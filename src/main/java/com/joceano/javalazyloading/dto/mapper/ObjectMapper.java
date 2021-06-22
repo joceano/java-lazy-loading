@@ -1,4 +1,4 @@
-package com.joceano.javalazyloading.dto.serialization;
+package com.joceano.javalazyloading.dto.mapper;
 
 import org.modelmapper.ModelMapper;
 

@@ -1,7 +1,7 @@
 package com.joceano.javalazyloading.service.impl;
 
 import com.joceano.javalazyloading.dto.PedidoItemDto;
-import com.joceano.javalazyloading.dto.serialization.ObjectMapper;
+import com.joceano.javalazyloading.dto.mapper.ObjectMapper;
 import com.joceano.javalazyloading.model.PedidoItem;
 import com.joceano.javalazyloading.repository.PedidoItemRepository;
 import com.joceano.javalazyloading.service.PedidoItemService;
