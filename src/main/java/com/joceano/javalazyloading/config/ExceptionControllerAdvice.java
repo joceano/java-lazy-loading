@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.persistence.NoResultException;
+import java.util.Objects;
 
 @ControllerAdvice
 public class ExceptionControllerAdvice {
@@ -23,8 +24,8 @@ public class ExceptionControllerAdvice {
     @ResponseBody
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Error MethodArgument(HttpMessageNotReadableException e) {
-        return new Error("X_200", e.getMessage());
+    public Error methodArgument(HttpMessageNotReadableException e) {
+        return new Error("X_200", Objects.requireNonNull(e.getMessage()));
     }
 
     @ResponseBody

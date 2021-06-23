@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public final class ObjectMapper {
+public final class ObjectModelMapper {
 
-    private ObjectMapper() { }
+    private ObjectModelMapper() { }
 
     public static <D> D map(Object source, Class<D> destinationType) {
         var modelMapper = new ModelMapper();

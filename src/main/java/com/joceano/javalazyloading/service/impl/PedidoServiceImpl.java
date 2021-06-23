@@ -2,7 +2,7 @@ package com.joceano.javalazyloading.service.impl;
 
 import com.joceano.javalazyloading.dto.PedidoDto;
 import com.joceano.javalazyloading.dto.PedidoResumoDto;
-import com.joceano.javalazyloading.dto.mapper.ObjectMapper;
+import com.joceano.javalazyloading.dto.mapper.ObjectModelMapper;
 import com.joceano.javalazyloading.model.Pedido;
 import com.joceano.javalazyloading.repository.PedidoRepository;
 import com.joceano.javalazyloading.service.PedidoService;
@@ -25,13 +25,13 @@ public class PedidoServiceImpl implements PedidoService {
     @Transactional(readOnly = true)
     public List<PedidoDto> findAll() {
         List<Pedido> pedidos = pedidoRepository.findAll();
-        return ObjectMapper.mapList(pedidos, PedidoDto.class);
+        return ObjectModelMapper.mapList(pedidos, PedidoDto.class);
     }
 
     @Override
     public List<PedidoResumoDto> findAllResumo() {
         List<Pedido> pedidos = pedidoRepository.findAll();
-        return ObjectMapper.mapList(pedidos, PedidoResumoDto.class);
+        return ObjectModelMapper.mapList(pedidos, PedidoResumoDto.class);
     }
 
     @Override
@@ -39,20 +39,20 @@ public class PedidoServiceImpl implements PedidoService {
     public PedidoDto findById(Long id) {
         var pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new NoResultException(String.format("Pedido de código %d não encontrado", id)));
-        return ObjectMapper.map(pedido, PedidoDto.class);
+        return ObjectModelMapper.map(pedido, PedidoDto.class);
     }
 
     @Override
     public PedidoResumoDto findByIdResumo(Long id) {
         var pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new NoResultException(String.format("Pedido de código %d não encontrado", id)));
-        return ObjectMapper.map(pedido, PedidoResumoDto.class);
+        return ObjectModelMapper.map(pedido, PedidoResumoDto.class);
     }
 
     @Override
     public PedidoDto insert(PedidoDto pedidoDto) {
-        var pedido = ObjectMapper.map(pedidoDto, Pedido.class);
+        var pedido = ObjectModelMapper.map(pedidoDto, Pedido.class);
         var pedidoSalvo = pedidoRepository.save(pedido);
-        return ObjectMapper.map(pedidoSalvo, PedidoDto.class);
+        return ObjectModelMapper.map(pedidoSalvo, PedidoDto.class);
     }
 }
