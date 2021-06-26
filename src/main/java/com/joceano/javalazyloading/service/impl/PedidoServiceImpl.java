@@ -29,6 +29,7 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<PedidoResumoDto> findAllResumo() {
         List<Pedido> pedidos = pedidoRepository.findAll();
         return ObjectModelMapper.mapList(pedidos, PedidoResumoDto.class);
@@ -43,6 +44,7 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public PedidoResumoDto findByIdResumo(Long id) {
         var pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new NoResultException(String.format("Pedido de código %d não encontrado", id)));
@@ -50,6 +52,7 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public PedidoDto insert(PedidoDto pedidoDto) {
         var pedido = ObjectModelMapper.map(pedidoDto, Pedido.class);
         var pedidoSalvo = pedidoRepository.save(pedido);

@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.persistence.NoResultException;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ExceptionControllerAdvice {
@@ -29,9 +32,19 @@ public class ExceptionControllerAdvice {
     }
 
     @ResponseBody
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Error methodArgument(ConstraintViolationException e) {
+        String message = e.getConstraintViolations().stream()
+                .map(ConstraintViolation::getMessage)
+                .collect(Collectors.joining());
+        return new Error("X_300", Objects.requireNonNull(message));
+    }
+
+    @ResponseBody
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Error other(Exception e) {
-        return new Error("X_300", e.getMessage());
+        return new Error("X_400", e.getMessage());
     }
 }
