@@ -12,4 +12,6 @@ public interface PedidoService {
     PedidoDto findById(Long id);
     PedidoResumoDto findByIdResumo(Long id);
     PedidoDto insert(PedidoDto pedidoDto);
+    PedidoDto update(PedidoDto pedidoDto);
+    void delete(Long id);
 }

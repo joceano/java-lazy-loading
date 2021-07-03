@@ -37,7 +37,7 @@ public class ExceptionControllerAdvice {
     public Error methodArgument(ConstraintViolationException e) {
         String message = e.getConstraintViolations().stream()
                 .map(ConstraintViolation::getMessage)
-                .collect(Collectors.joining());
+                .collect(Collectors.joining("; "));
         return new Error("X_300", Objects.requireNonNull(message));
     }
 

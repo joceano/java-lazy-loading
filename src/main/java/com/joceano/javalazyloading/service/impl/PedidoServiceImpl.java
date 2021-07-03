@@ -58,4 +58,23 @@ public class PedidoServiceImpl implements PedidoService {
         var pedidoSalvo = pedidoRepository.save(pedido);
         return ObjectModelMapper.map(pedidoSalvo, PedidoDto.class);
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public PedidoDto update(PedidoDto pedidoDto) {
+        if (!pedidoRepository.existsById(pedidoDto.getId()))
+            throw new NoResultException(String.format("Pedido de código %d não encontrado", pedidoDto.getId()));
+        var pedido = ObjectModelMapper.map(pedidoDto, Pedido.class);
+        var pedidoSalvo = pedidoRepository.save(pedido);
+        return ObjectModelMapper.map(pedidoSalvo, PedidoDto.class);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Long id) {
+        if (!pedidoRepository.existsById(id))
+            throw new NoResultException(String.format("Pedido de código %d não encontrado", id));
+        pedidoRepository.deleteById(id);
+    }
+
 }

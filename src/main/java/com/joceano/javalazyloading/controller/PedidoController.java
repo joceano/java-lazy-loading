@@ -43,4 +43,15 @@ public class PedidoController {
     public PedidoDto insert(@RequestBody PedidoDto pedidoDto) {
         return pedidoService.insert(pedidoDto);
     }
+
+    @PutMapping
+    public PedidoDto update(@RequestBody PedidoDto pedidoDto) {
+        return pedidoService.update(pedidoDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") Long id) {
+        pedidoService.delete(id);
+    }
 }
