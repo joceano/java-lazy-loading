@@ -32,7 +32,7 @@ public class PedidoControllerTest {
     public void deveRetornarStatus200_QuandoConsultaPedidoExistente() {
         RestAssured
             .given()
-                .basePath("/pedido/{id}")
+                .basePath("/pedidos/{id}")
                 .pathParam("id", ID_PEDIDO_EXISTENTE)
                 .accept(ContentType.JSON)
             .when()
@@ -45,7 +45,7 @@ public class PedidoControllerTest {
     public void deveRetornarStatus200_QuandoConsultaPedidoExistenteResumo() {
         RestAssured
             .given()
-                .basePath("/pedido/{id}/resumo")
+                .basePath("/pedidos/{id}/resumo")
                 .pathParam("id", ID_PEDIDO_EXISTENTE)
                 .accept(ContentType.JSON)
             .when()
@@ -58,7 +58,7 @@ public class PedidoControllerTest {
     public void deveRetornarStatus404_QuandoConsultaPedidoInexistente() {
         RestAssured
             .given()
-                .basePath("/pedido/{id}")
+                .basePath("/pedidos/{id}")
                 .pathParam("id", ID_PEDIDO_INEXISTENTE)
                 .accept(ContentType.JSON)
             .when()
@@ -71,7 +71,7 @@ public class PedidoControllerTest {
     public void deveRetornarStatus404_QuandoConsultaPedidoInexistenteResumo() {
         RestAssured
             .given()
-                .basePath("/pedido/{id}")
+                .basePath("/pedidos/{id}")
                 .pathParam("id", ID_PEDIDO_INEXISTENTE)
                 .accept(ContentType.JSON)
             .when()
@@ -84,7 +84,7 @@ public class PedidoControllerTest {
     public void deveRetornarStatus200_QuandoConsultaTodosOsPedidos() {
         RestAssured
             .given()
-                .basePath("/pedido")
+                .basePath("/pedidos")
                 .accept(ContentType.JSON)
             .when()
                 .get()
@@ -96,7 +96,7 @@ public class PedidoControllerTest {
     public void deveRetornarStatus200_QuandoConsultaTodosOsPedidosResumo() {
         RestAssured
             .given()
-                .basePath("/pedido/resumo")
+                .basePath("/pedidos/resumo")
                 .accept(ContentType.JSON)
             .when()
                 .get()
@@ -108,7 +108,7 @@ public class PedidoControllerTest {
     public void deveRetornarStatus204_QuandoExcluiPedidoExistente() {
         RestAssured
             .given()
-                .basePath("/pedido/{id}")
+                .basePath("/pedidos/{id}")
                 .pathParam("id", ID_PEDIDO_EXCLUSAO_EXISTENTE)
                 .accept(ContentType.JSON)
             .when()
@@ -121,7 +121,7 @@ public class PedidoControllerTest {
     public void deveRetornarStatus404_QuandoExcluiPedidoInexistente() {
         RestAssured
             .given()
-                .basePath("/pedido/{id}")
+                .basePath("/pedidos/{id}")
                 .pathParam("id", ID_PEDIDO_EXCLUSAO_INEXISTENTE)
                 .accept(ContentType.JSON)
             .when()
@@ -134,7 +134,7 @@ public class PedidoControllerTest {
     public void deveRetornarStatus201_QuandoIncluirPedido() {
         RestAssured
             .given()
-                .basePath("/pedido")
+                .basePath("/pedidos")
                 .body(PEDIDO_DTO)
                 .contentType(ContentType.JSON)
             .when()
@@ -148,7 +148,7 @@ public class PedidoControllerTest {
         PEDIDO_DTO.setId(ID_PEDIDO_EXISTENTE);
         RestAssured
             .given()
-                .basePath("/pedido")
+                .basePath("/pedidos")
                 .body(PEDIDO_DTO)
                 .contentType(ContentType.JSON)
             .when()
@@ -162,7 +162,7 @@ public class PedidoControllerTest {
         PEDIDO_DTO.setId(ID_PEDIDO_INEXISTENTE);
         RestAssured
             .given()
-                .basePath("/pedido")
+                .basePath("/pedidos")
                 .body(PEDIDO_DTO)
                 .contentType(ContentType.JSON)
             .when()
