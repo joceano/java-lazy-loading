@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pedido-item")
+@RequestMapping("/pedido-itens")
 public class PedidoItemController {
 
     private final PedidoItemService pedidoItemService;
